@@ -51,11 +51,12 @@ public class ThymeleafViewResolverConfig {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 
-        templateResolver.setPrefix("templates/");
+        templateResolver.setPrefix("thymeleaf/templates/");
         templateResolver.setCacheable(false);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
+        //templateResolver.setOrder(0);
 
         return templateResolver;
     }
