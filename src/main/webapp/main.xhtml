@@ -2,11 +2,67 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>xhtml</title>
-</head>
-<body>
-xhtml+
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<f:view>
+    <h:head><title>Second Page Title</title></h:head>
+
+    <h:body>
+
+
+        <h:form>
+            <p:calendar />
+
+
+            <p:outputLabel id="labelId" title="OutputLabel title" value="#{mainBean.inputText}"/>
+
+            <p:inputText id="inputTextId" placeholder="#{mainBean.inputText}" title="From Managed Bean"
+                         value="#{mainBean.inputText}"/>
+
+            <br/>
+            <p:outputLabel value="Пример Ajax Обновления" for="ajaxBtnId"/>
+            <p:commandButton id="ajaxBtnId" value="Обновить только поля"
+                             action="#{mainBean.showMessage}"
+                             update="labelId, inputTextId, growlMessageId" />
+
+            <p:growl id="growlMessageId" showDetail="true" widgetVar="growlMessageId"/>
+        </h:form>
+
+        <h:panelGrid columns="1" columnClasses="col,col">
+            <h:panelGroup columns="2" styleClass="table-row-cell">
+                <h:graphicImage value="images/boris.png" /> <h:outputText value="JavaBeat Component First Row/First Column "/>
+                <h:outputText value="JavaBeat Component First Row/Second Column "/>
+            </h:panelGroup>
+            <h:panelGroup columns="2">
+                <h:outputText value="JavaBeat Component Second Row/First Column "/>
+                <h:outputText value="JavaBeat Component Second Row/Second Column "/>
+            </h:panelGroup>
+        </h:panelGrid>
+
+        <div class="ui-g">
+            <div class="ui-g-4">4</div>
+            <div class="ui-g-1">1</div>
+            <div class="ui-g-3">3</div>
+            <div class="ui-g-4">4</div>
+        </div>
+
+        <h3>Responsive</h3>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+            <div class="ui-g-12 ui-lg-4">ui-g-12 ui-lg-4</div>
+        </div>
+
+    </h:body>
+</f:view>
 </html>

@@ -29,5 +29,15 @@ public class JsfConfig implements ServletContextAware {
     @Override
     public void setServletContext(ServletContext servletContext) {
         servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+        servletContext.setInitParameter("javax.faces.PARTIAL_STATE_SAVING_METHOD", "true");
+        servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
+        servletContext.setInitParameter("facelets.DEVELOPMENT", "true");
+        servletContext.setInitParameter("javax.faces.FACELETS_REFRESH_PERIOD", "1");
+        servletContext.setInitParameter("primefaces.THEME", "bootstrap");
+
+//        servletContext.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", Boolean.TRUE.toString());
+//        servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", Boolean.TRUE.toString());
+//        servletContext.setInitParameter("primefaces.FONT_AWESOME", Boolean.TRUE.toString());
+//        servletContext.setInitParameter("primefaces.UPLOADER", "commons");
     }
 }
