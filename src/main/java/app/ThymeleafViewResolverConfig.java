@@ -1,5 +1,8 @@
 package app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -12,6 +15,13 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 public class ThymeleafViewResolverConfig {
+
+    @Autowired
+    private ThymeleafProperties properties;
+
+    @Value("${spring.thymeleaf.templates_root:}")
+    private String templatesRoot;
+
 
     @Bean
     public ViewResolver thymeleafViewResolver() {
@@ -51,9 +61,9 @@ public class ThymeleafViewResolverConfig {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 
-        templateResolver.setPrefix("thymeleaf/templates/");
         templateResolver.setCacheable(false);
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix(properties.getPrefix());
+        templateResolver.setSuffix(properties.getSuffix());
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
         //templateResolver.setOrder(0);
