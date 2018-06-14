@@ -8,24 +8,26 @@
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 <f:view>
-    <h:head><title>Second Page Title</title></h:head>
+    <h:head><title>Second Page Title 2</title></h:head>
 
     <h:body>
-
+        <h:outputStylesheet target="head" >
+            @import url("css/main.css?v=1")
+        </h:outputStylesheet>
 
         <h:form>
             <p:calendar />
 
 
-            <p:outputLabel id="labelId" title="OutputLabel title" value="#{mainBean.inputText}"/>
+            <p:outputLabel id="labelId" title="OutputLabel title" value="#{mainPage.inputText}"/>
 
-            <p:inputText id="inputTextId" placeholder="#{mainBean.inputText}" title="From Managed Bean"
-                         value="#{mainBean.inputText}"/>
+            <p:inputText id="inputTextId" placeholder="#{mainPage.inputText}" title="From Managed Bean"
+                         value="#{mainPage.inputText}"/>
 
             <br/>
             <p:outputLabel value="Пример Ajax Обновления" for="ajaxBtnId"/>
             <p:commandButton id="ajaxBtnId" value="Обновить только поля"
-                             action="#{mainBean.showMessage}"
+                             action="#{mainPage.showMessage}"
                              update="labelId, inputTextId, growlMessageId" />
 
             <p:growl id="growlMessageId" showDetail="true" widgetVar="growlMessageId"/>
@@ -33,7 +35,8 @@
 
         <h:panelGrid columns="1" columnClasses="col,col">
             <h:panelGroup columns="2" styleClass="table-row-cell">
-                <h:graphicImage value="images/boris.png" /> <h:outputText value="JavaBeat Component First Row/First Column "/>
+                <h:graphicImage value="images/boris.png" />
+                <h:outputText value="JavaBeat Component First Row/First Column "/>
                 <h:outputText value="JavaBeat Component First Row/Second Column "/>
             </h:panelGroup>
             <h:panelGroup columns="2">
@@ -62,6 +65,27 @@
             <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
             <div class="ui-g-12 ui-lg-4">ui-g-12 ui-lg-4</div>
         </div>
+
+
+
+        <h:form>
+            <p:dataScroller value="#{mainPage.listContacts}" var="contact" chunkSize="10">
+                <f:facet name="header">
+                    #{mainPage.header}
+                </f:facet>
+
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:graphicImage styleClass="listContactImg" value="images/#{contact.img}" />
+                    <p:outputPanel>
+                        <h:panelGrid columns="1" cellpadding="2">
+                            <h:outputText value="Name:" />
+                            <h:outputText value="#{contact.name}" style="font-weight: bold"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
+
 
     </h:body>
 </f:view>

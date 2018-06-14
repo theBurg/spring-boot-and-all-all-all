@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 //curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws/getCountryRequest
-@SpringBootApplication(scanBasePackages = {"app", "ws"})
+@SpringBootApplication(scanBasePackages = {"app", "ws", "views"})
 public class Application extends SpringBootServletInitializer{
 
     public static void main(String[] args) {

@@ -36,8 +36,8 @@ public class ThemeSwitcherBean implements Serializable {
 
     @PostConstruct
     public void init() {
-//        setGp(new GuestPreferences()); // persistent class
-//        setTheme(gp.getUserTheme()); // theme from the database;
+        setGp(new GuestPreferences()); // persistent class
+        setTheme(gp.getUserTheme()); // theme from the database;
 
         themes = new TreeMap<String, String>();
         themes.put("Aristo", "aristo");
@@ -74,8 +74,8 @@ public class ThemeSwitcherBean implements Serializable {
         themes.put("Vader", "vader");
     }
 
-//    public void saveTheme() {
-//        gp.setTheme(theme); // theme to database
-//    }
+    public void saveTheme() {
+        gp.setUserTheme(theme); // theme to database
+    }
 
 }
