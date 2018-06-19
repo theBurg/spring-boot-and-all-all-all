@@ -12,55 +12,39 @@
 
     <h:body>
         <h:outputStylesheet target="head" >
-            @import url("css/main.css?v=1")
+            @import url("css/main.css?v=1");
         </h:outputStylesheet>
 
         <h:form>
             <p:calendar />
 
 
-            <p:outputLabel id="labelId" title="OutputLabel title" value="#{mainPage.inputText}"/>
-
-            <p:inputText id="inputTextId" placeholder="#{mainPage.inputText}" title="From Managed Bean"
-                         value="#{mainPage.inputText}"/>
+            <p:outputLabel id="labelId" title="OutputLabel title" value="#{contactPage.inputText}"/>
+            <br/>
+            <p:inputText id="inputTextId" placeholder="#{contactPage.inputText}" title="From Managed Bean"
+                         value="#{contactPage.inputText}"/>
 
             <br/>
-            <p:outputLabel value="Пример Ajax Обновления" for="ajaxBtnId"/>
-            <p:commandButton id="ajaxBtnId" value="Обновить только поля"
-                             action="#{mainPage.showMessage}"
+            <p:outputLabel value="Пример Ajax Обновления" for="ajaxBtnUpd"/>
+            <br/>
+            <p:commandButton id="ajaxBtnUpd" value="Обновить список"
+                             update="labelId, inputTextId, growlMessageId, contactListTable" />
+            <p:commandButton id="ajaxBtnAdd" value="Пополнить список"
+                             action="#{contactPage.AddContact}"
                              update="labelId, inputTextId, growlMessageId" />
 
             <p:growl id="growlMessageId" showDetail="true" widgetVar="growlMessageId"/>
         </h:form>
 
-        <h:panelGrid columns="1" columnClasses="col,col">
-            <h:panelGroup columns="2" styleClass="table-row-cell">
-                <h:graphicImage value="images/boris.png" />
-                <h:outputText value="JavaBeat Component First Row/First Column "/>
-                <h:outputText value="JavaBeat Component First Row/Second Column "/>
-            </h:panelGroup>
-            <h:panelGroup columns="2">
-                <h:outputText value="JavaBeat Component Second Row/First Column "/>
-                <h:outputText value="JavaBeat Component Second Row/Second Column "/>
-            </h:panelGroup>
-        </h:panelGrid>
-
-        <div class="ui-g">
-            <div class="ui-g-4">4</div>
-            <div class="ui-g-1">1</div>
-            <div class="ui-g-3">3</div>
-            <div class="ui-g-4">4</div>
-        </div>
-
         <h3>Responsive</h3>
-        <div class="ui-g">
+        <div class="ui-g" style="border: #0000FF 1px dashed">
             <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
         </div>
 
-        <div class="ui-g">
+        <div class="ui-g" style="border: #F00 1px dashed">
             <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
             <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
             <div class="ui-g-12 ui-lg-4">ui-g-12 ui-lg-4</div>
@@ -68,24 +52,32 @@
 
 
 
-        <h:form>
-            <p:dataScroller value="#{mainPage.listContacts}" var="contact" chunkSize="10">
-                <f:facet name="header">
-                    #{mainPage.header}
-                </f:facet>
-
+        <h:form id="contactListTable">
+            <p:repeat value="#{contactPage.listContacts}" var="contact">
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <p:graphicImage styleClass="listContactImg" value="images/#{contact.img}" />
+                    <p:commandLink update="" oncomplete="PF('carDialog').show()">
+                        <!--<f:setPropertyActionListener value="#{car}" target="#{dataListView.selectedCar}" />-->
+                        <!--<p:outputPanel>-->
+                            <p:graphicImage styleClass="listContactImg" value="images/#{contact.img}" />
+                        <!--</p:outputPanel>-->
+                    </p:commandLink>
+
                     <p:outputPanel>
-                        <h:panelGrid columns="1" cellpadding="2">
-                            <h:outputText value="Name:" />
-                            <h:outputText value="#{contact.name}" style="font-weight: bold"/>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Id:" />
+                            <h:outputText value="#{contact.firstName}" style="font-weight: bold"/>
+
+                            <h:outputText value="Year:" />
+                            <h:outputText value="#{contact.middleName}" style="font-weight: bold"/>
+
+                            <h:outputText value="Color:" />
+                            <h:outputText value="#{contact.lastName}" style="font-weight: bold"/>
                         </h:panelGrid>
                     </p:outputPanel>
                 </h:panelGrid>
-            </p:dataScroller>
+                <hr />
+            </p:repeat>
         </h:form>
-
 
     </h:body>
 </f:view>
