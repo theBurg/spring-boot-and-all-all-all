@@ -15,23 +15,18 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-public class Contact {
+public class ContactList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
-    private String middleName;
-    @Column(nullable = false)
-    private String lastName;
+    @ManyToOne
+    @JoinColumn(name = "own", nullable = false)
+    private Contact own;
 
-    @Column(nullable = false)
-    private String phoneNumber;
-    private String img;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Post> posts;
+    @ManyToOne
+    @JoinColumn(name = "ref", nullable = false)
+    private Contact ref;
 }

@@ -3,6 +3,7 @@ package views.jsf;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -29,14 +30,14 @@ public class ContactPage {
 
     public ContactPage(){
         listContacts = new ArrayList<>(Arrays.asList(
-                new Contact( null,"Боря", "Михайлович", "Моисеев", "111-222", "boris.png"),
-                new Contact( null,"БорисКО", "Михайлович", "Моисеев", "222-333", "boris.png")
+                new Contact( null,"Боря", "Михайлович", "Моисеев", "111-222", "boris.png", new HashSet<>()),
+                new Contact( null,"БорисКО", "Михайлович", "Моисеев", "222-333", "boris.png", new HashSet<>())
         ));
     }
 
 public void AddContact(){
     this.inputText = "wwwwww2222";
-    Contact newContact = new Contact( null,"Борис", "Михайлович", "Моисеев", "322-233", "boris.png");
+    Contact newContact = new Contact( null,"Борис", "Михайлович", "Моисеев", "322-233", "boris.png", new HashSet<>());
 
     newContact = contactService.addContact(newContact);
 

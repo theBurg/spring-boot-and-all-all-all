@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 //curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws/getCountryRequest
 @SpringBootApplication(scanBasePackages = {"app", "ws", "views", "service"})
 @EnableJpaRepositories(basePackages = {"repository"})
+@EnableTransactionManagement
 @EntityScan(basePackages = {"domain"})
 public class Application extends SpringBootServletInitializer{
 

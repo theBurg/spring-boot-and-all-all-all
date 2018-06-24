@@ -2,7 +2,10 @@ package service;
 
 import domain.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 import repository.ContactDAO;
 
@@ -12,7 +15,7 @@ public class ContactService {
     @Autowired
     ContactDAO contactDAO;
 
-    @TransactionalEventListener
+    @Transactional(rollbackFor = {}, noRollbackFor = {})
     public Contact addContact(Contact contact){
         //contactDAO.findByPhoneNumber("322233");
         if(contactDAO.existsByPhoneNumber("322233")){
@@ -20,7 +23,4 @@ public class ContactService {
         }
         return contactDAO.save(contact);
     }
-
-
-
 }

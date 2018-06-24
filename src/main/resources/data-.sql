@@ -1,0 +1,3 @@
+--INSERT INTO Contact (id, firstName, middleName, lastName, phoneNumber, img) VALUES (1,'Боря', 'Михайлович', 'Моисеев', '111-222', 'boris.png');
+--INSERT INTO Contact (id, firstName, middleName, lastName, phoneNumber, img) VALUES (2,'БорисКО', 'Михайлович', 'Моисеев', '222-333', 'boris.png');
+--INSERT INTO Contact (id, firstName, middleName, lastName, phoneNumber, img) VALUES (3,'Борис', 'Михайлович', 'Моисеев', '322-233', 'boris.png');
